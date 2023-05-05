@@ -6,7 +6,6 @@
 #include <limits.h>
 #include <cmath>
 
-
 namespace ariel
 {
 
@@ -22,24 +21,27 @@ namespace ariel
         /* constructors */
         Fraction();
         Fraction(int nom, int den);
-        // Fraction(int nom);
         Fraction(float num);
-        // Fraction(const Fraction &other); // copy ctor
-        // ~Fraction();
-        int getNumerator() const {
-            return _nom; };
-        int getDenominator() const { 
-            return _den; }
-        void setNumerator(int nom) {_nom = nom;}
-        void setDenominator(int den) {
+
+        /* Getter & Setter */
+        int getNumerator() const { return _nom; };
+
+        int getDenominator() const { return _den; }
+
+        void setNumerator(int nom) { _nom = nom; }
+
+        void setDenominator(int den)
+        {
             if (den == 0)
-                {throw std::invalid_argument("Denominator cannot be zero.");}
+            {
+                throw std::invalid_argument("Denominator cannot be zero.");
+            }
             _den = den;
         }
-        // friend void decimal_point(float &num);
-        friend void exceedsIntMax(const long &value) ;
+
+        /* Auxiliary functions */
+        friend void exceedsIntMax(const long &value);
         friend void exceedsTwoIntMax(const long &num_1, const long &num_2);
-        // Fraction floatToFraction(float num);
         bool signFraction() const;
 
         /*Arithmetic operations on a Fraction*/
@@ -86,26 +88,13 @@ namespace ariel
         friend bool operator>=(const float &num, const Fraction &other);
         friend bool operator<=(const float &num, const Fraction &other);
 
-        /*Additional operations on fractions*/
-        // friend Fraction &operator+=(Fraction &frac, const Fraction &other);
-        // friend Fraction &operator-=(Fraction &frac, const Fraction &other);
-        // friend Fraction &operator*=(Fraction &frac, const Fraction &other);
-        // friend Fraction &operator/=(Fraction &frac, const Fraction &other);
-
-        // friend Fraction &operator+=(Fraction &frac, const float &num);
-        // friend Fraction &operator-=(Fraction &frac, const float &num);
-        // friend Fraction &operator*=(Fraction &frac, const float &num);
-        // friend Fraction &operator/=(Fraction &frac, const float &num);
-
-        // const Fraction operator+() const;
-        // const Fraction operator-() const;
-
+        /* Prefix & Postfix */
         Fraction &operator++();         // Prefix (++n)
         Fraction &operator--();         // Prefix (++n)
         const Fraction operator++(int); // Postfix (n++)
         const Fraction operator--(int); // Postfix (n++)
 
-        /*output - input*/
+        /* Output & Input */
         friend std::ostream &operator<<(std::ostream &ost, const Fraction &frac);
         friend std::istream &operator>>(std::istream &ist, Fraction &frac);
     };
