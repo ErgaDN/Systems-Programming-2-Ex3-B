@@ -30,12 +30,12 @@ namespace ariel
             return _nom; };
         int getDenominator() const { 
             return _den; }
-        // void setNumerator(int nom) {_nom = nom;}
-        // void setDenominator(int den) {
-        //     if (den == 0)
-        //         throw invalid_argument("Denominator cannot be zero.");
-        //     _den = den;
-        // }
+        void setNumerator(int nom) {_nom = nom;}
+        void setDenominator(int den) {
+            if (den == 0)
+                {throw std::invalid_argument("Denominator cannot be zero.");}
+            _den = den;
+        }
         // friend void decimal_point(float &num);
         friend void exceedsIntMax(const long &value) ;
         friend void exceedsTwoIntMax(const long &num_1, const long &num_2);
@@ -107,7 +107,7 @@ namespace ariel
 
         /*output - input*/
         friend std::ostream &operator<<(std::ostream &ost, const Fraction &frac);
-        friend istream &operator>>(istream &ist, Fraction &frac);
+        friend std::istream &operator>>(std::istream &ist, Fraction &frac);
     };
 }
 
